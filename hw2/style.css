@@ -1,0 +1,225 @@
+/*
+  Name: Nikki Safarova
+  File: style.css
+  Date Created: 2026-02-21
+  Date Updated: 2026-03-27
+  Purpose: MIS 7375 Homework 2 - MediForm CSS Stylesheet
+*/
+
+body {
+  background: #d2eaf6;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+}
+
+/* HEADER SECTION */
+#header {
+  background: #fdfeff;
+  border-bottom: 1px solid #cfeaf2;
+  padding: 14px 18px;
+}
+
+#header img {
+  width: 190px;
+}
+
+#today {
+  background: #c9f1ee;
+  border-radius: 10px;
+  color: #0f6e8c;
+  font-weight: 700;
+  padding: 6px 10px;
+}
+
+/* BODY SECTION */
+#body {
+  padding: 26px 14px 34px 14px;
+}
+
+h2 {
+  color: #0f6e8c;
+  font-weight: 800;
+  margin: 0 0 18px 0;
+  text-align: center;
+}
+
+/* FORM CARD */
+#body table {
+  background: #ffffff;
+  border: 1px solid #d7e8ef;
+  border-collapse: separate;
+  border-radius: 14px;
+  border-spacing: 0;
+  box-shadow: 0 10px 30px rgba(15, 110, 140, 0.08);
+  max-width: 95%;
+  width: 860px;
+}
+
+#body th {
+  background: linear-gradient(90deg, #0f6e8c, #2dd4bf);
+  border-radius: 14px 14px 0 0;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 14px 16px;
+  text-align: left;
+}
+
+/* INPUTS */
+input,
+select,
+textarea {
+  background: #f7fbfd;
+  border: 1px solid #cfe3ea;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+  margin-top: 6px;
+  padding: 10px;
+  width: 100%;
+}
+
+textarea {
+  height: 100px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 6px;
+  margin-top: 0;
+  width: auto;
+}
+
+/* BUTTONS */
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 14px;
+  width: auto;
+}
+
+input[type="reset"] {
+  background: #e9eef2;
+  color: #0b2b3a;
+}
+
+input[type="submit"] {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+#button {
+  background: #2dd4bf;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 9px 12px;
+}
+
+/* SLIDER */
+input[type="range"] {
+  accent-color: #2dd4bf;
+}
+
+#scoreValue {
+  background: #c9f1ee;
+  border-radius: 10px;
+  color: #0f6e8c;
+  display: inline-block;
+  font-weight: 800;
+  margin-top: 8px;
+  padding: 5px 10px;
+}
+
+/* REVIEW SECTION */
+#reviewSection {
+  background: #ffffff;
+  border: 1px solid #d7e8ef;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(15, 110, 140, 0.08);
+  box-sizing: border-box;
+  display: none;
+  margin: 24px auto 0 auto;
+  max-width: 860px;
+  padding: 24px;
+  width: 100%;
+}
+
+#reviewSection h3 {
+  color: #0f6e8c;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+#reviewSection h4 {
+  color: #0f6e8c;
+  margin-bottom: 12px;
+  margin-top: 26px;
+  text-transform: uppercase;
+}
+
+.reviewGrid {
+  column-gap: 20px;
+  display: grid;
+  grid-template-columns: 230px 1fr 220px;
+  row-gap: 10px;
+}
+
+.reviewGridSmall {
+  column-gap: 20px;
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  row-gap: 10px;
+}
+
+.reviewLabel {
+  font-weight: 700;
+}
+
+.reviewStatus {
+  font-weight: 700;
+}
+
+.pass {
+  color: green;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+#passwordMessage {
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+/* FOOTER SECTION */
+#footer {
+  background: #0f6e8c;
+  color: #ffffff;
+  margin-top: 26px;
+  padding: 16px 14px;
+}
+
+#footer a {
+  color: #c9f1ee;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#footer button {
+  background: #2dd4bf;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  padding: 9px 12px;
+}
