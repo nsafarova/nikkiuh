@@ -6,12 +6,15 @@
   Purpose: MIS 7375 Homework 2 - MediForm JavaScript
 */
 
+/* Display today's date */
 document.getElementById("today").innerHTML =
   new Date().toLocaleDateString("en-US");
 
+/* Slider value display */
 var slider = document.getElementById("health_score");
 var output = document.getElementById("scoreValue");
 
+/* Show and update slider value */
 if (slider && output) {
   output.innerHTML = slider.value;
 
@@ -20,11 +23,13 @@ if (slider && output) {
   };
 }
 
+/* Get selected radio button value */
 function getCheckedValue(name) {
   var selected = document.querySelector('input[name="' + name + '"]:checked');
   return selected ? selected.value : "";
 }
 
+/* Get selected checkbox values */
 function getCheckedList(name) {
   var checked = document.querySelectorAll('input[name="' + name + '"]:checked');
   var values = [];
@@ -36,11 +41,13 @@ function getCheckedList(name) {
   return values;
 }
 
+/* Convert user ID to lowercase */
 function makeUseridLowercase() {
   var userid = document.getElementById("userid");
   userid.value = userid.value.toLowerCase();
 }
 
+/* Check if password contains personal information */
 function containsPersonalInfo(password, userid, firstname, lastname) {
   var pw = password.toLowerCase();
   var user = userid.toLowerCase();
@@ -62,6 +69,7 @@ function containsPersonalInfo(password, userid, firstname, lastname) {
   return false;
 }
 
+/* Validate passwords and show message */
 function checkPasswords() {
   var password1 = document.getElementById("password").value;
   var password2 = document.getElementById("password2").value;
@@ -76,7 +84,8 @@ function checkPasswords() {
   }
 
   if (containsPersonalInfo(password1, userid, firstname, lastname)) {
-    message.innerHTML = "Password cannot match or contain your user ID, first name, or last name.";
+    message.innerHTML =
+      "Password cannot match or contain your user ID, first name, or last name.";
     return;
   }
 
@@ -92,7 +101,10 @@ function checkPasswords() {
   }
 }
 
+/* Build and display review summary */
 function showReview() {
+
+  /* Get values from all input fields */
   var firstname = document.getElementById("firstname").value.trim();
   var middleinit = document.getElementById("middleinit").value.trim();
   var lastname = document.getElementById("lastname").value.trim();
@@ -111,35 +123,46 @@ function showReview() {
   var symptoms = document.getElementById("symptoms").value.trim();
   var healthScore = document.getElementById("health_score").value;
 
+  /* Ensure user ID stays lowercase in input field */
   document.getElementById("userid").value = userid;
 
+  /* Get selected values from radio buttons */
   var gender = getCheckedValue("gender");
   var vaccinated = getCheckedValue("vaccinated");
   var insurance = getCheckedValue("insurance");
+
+  /* Get selected checkbox values */
   var history = getCheckedList("history");
 
+  /* Build full name including middle initial if present */
   var fullName = firstname;
   if (middleinit !== "") {
     fullName += " " + middleinit;
   }
   fullName += " " + lastname;
 
-var fullAddress = addr1;
+  /* Build full address step by step */
+  var fullAddress = addr1;
 
-if (addr2 !== "") {
-  fullAddress += ", " + addr2;
-}
-
-if (city !== "" || state !== "" || zip !== "") {
-  fullAddress += ", " + city;
-  if (state !== "") {
-    fullAddress += ", " + state;
+  /* Add address line 2 if provided */
+  if (addr2 !== "") {
+    fullAddress += ", " + addr2;
   }
-  if (zip !== "") {
-    fullAddress += " " + zip;
-  }
-}
 
+  /* Add city, state, and zip if available */
+  if (city !== "" || state !== "" || zip !== "") {
+    fullAddress += ", " + city;
+
+    if (state !== "") {
+      fullAddress += ", " + state;
+    }
+
+    if (zip !== "") {
+      fullAddress += " " + zip;
+    }
+  }
+
+  /* Validate name fields */
   var nameStatus = "PASS";
   if (!firstname || !lastname) {
     nameStatus = "ERROR: First and last name are required";
@@ -149,6 +172,7 @@ if (city !== "" || state !== "" || zip !== "") {
     nameStatus = "ERROR: Invalid last name";
   }
 
+  /* Validate date of birth */
   var dobStatus = "PASS";
   if (!dob) {
     dobStatus = "ERROR: Missing date of birth";
@@ -156,6 +180,8 @@ if (city !== "" || state !== "" || zip !== "") {
     var selectedDate = new Date(dob);
     var today = new Date();
     var minDate = new Date();
+
+    /* Calculate minimum allowed date (120 years ago) */
     minDate.setFullYear(today.getFullYear() - 120);
 
     if (selectedDate > today) {
@@ -165,6 +191,7 @@ if (city !== "" || state !== "" || zip !== "") {
     }
   }
 
+  /* Validate email format */
   var emailStatus = "PASS";
   if (!email) {
     emailStatus = "ERROR: Missing email";
@@ -172,6 +199,7 @@ if (city !== "" || state !== "" || zip !== "") {
     emailStatus = "ERROR: Invalid email format";
   }
 
+  /* Validate phone number format */
   var phoneStatus = "PASS";
   if (!phone) {
     phoneStatus = "ERROR: Missing phone number";
@@ -179,6 +207,7 @@ if (city !== "" || state !== "" || zip !== "") {
     phoneStatus = "ERROR: Use 123-456-7890 format";
   }
 
+  /* Validate address fields */
   var addressStatus = "PASS";
   if (!addr1 || !city || !state || !zip) {
     addressStatus = "ERROR: Missing required address fields";
@@ -186,6 +215,7 @@ if (city !== "" || state !== "" || zip !== "") {
     addressStatus = "ERROR: Invalid ZIP code";
   }
 
+  /* Validate user ID */
   var useridStatus = "PASS";
   if (!userid) {
     useridStatus = "ERROR: Missing user ID";
@@ -193,6 +223,7 @@ if (city !== "" || state !== "" || zip !== "") {
     useridStatus = "ERROR: Invalid user ID";
   }
 
+  /* Validate password */
   var passwordStatus = "PASS";
   if (!password || !password2) {
     passwordStatus = "ERROR: Missing password";
@@ -202,9 +233,11 @@ if (city !== "" || state !== "" || zip !== "") {
     passwordStatus = "ERROR: Password contains personal information";
   }
 
+  /* Prepare display text for checkboxes and textarea */
   var historyDisplay = history.length ? history.join(", ") : "None selected";
   var symptomsDisplay = symptoms ? symptoms : "No details entered";
 
+  /* Build HTML content for review section */
   var reviewHTML = `
     <div class="reviewGrid">
 
@@ -265,12 +298,16 @@ if (city !== "" || state !== "" || zip !== "") {
     </div>
   `;
 
+  /* Insert review HTML into page */
   document.getElementById("reviewContent").innerHTML = reviewHTML;
+
+  /* Make review section visible */
   document.getElementById("reviewSection").style.display = "block";
 }
 
+/* Format phone number automatically */
 function formatPhone(input) {
-  var value = input.value.replace(/\D/g, ""); // remove non-digits
+  var value = input.value.replace(/\D/g, "");
 
   if (value.length > 3 && value.length <= 6) {
     value = value.slice(0, 3) + "-" + value.slice(3);
@@ -286,6 +323,7 @@ function formatPhone(input) {
   input.value = value;
 }
 
+/* Clear review section and messages */
 function clearReview() {
   document.getElementById("reviewContent").innerHTML = "";
   document.getElementById("reviewSection").style.display = "none";

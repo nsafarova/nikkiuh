@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MIS 7375 | Nikki Safarova</title>
+
   <style>
     body{
       margin:0;
@@ -11,39 +12,47 @@
       background:#0b1020;
       color:#ffffff;
     }
+
     .wrap{
       max-width:900px;
       margin:0 auto;
       padding:28px 18px 60px;
     }
+
     .card{
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.12);
       border-radius: 18px;
       padding: 18px;
     }
+
     h1{
       margin:0 0 6px;
       font-size:28px;
       letter-spacing:-.2px;
     }
+
     .sub{
       margin:0;
       color: rgba(255,255,255,.72);
       line-height:1.5;
     }
+
     .grid{
       margin-top:14px;
       display:grid;
       grid-template-columns: repeat(4, 1fr);
       gap:12px;
     }
+
     @media (max-width: 900px){
       .grid{grid-template-columns: repeat(2, 1fr);}
     }
+
     @media (max-width: 520px){
       .grid{grid-template-columns: 1fr;}
     }
+
     a.tile{
       display:block;
       padding:14px;
@@ -54,11 +63,13 @@
       text-decoration:none;
       transition:.15s ease;
     }
+
     a.tile:hover{
       transform: translateY(-2px);
       background: rgba(255,255,255,.08);
       border-color: rgba(255,255,255,.20);
     }
+
     .tag{
       display:inline-block;
       margin-top:10px;
@@ -69,40 +80,40 @@
       border-radius:999px;
     }
 
-    /* HW1 details section */
     .details{
-      margin-top:14px;
-      padding:14px;
+      margin-top:16px;
+      padding:16px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.04);
     }
+
     .details h2{
       margin:0 0 10px;
       font-size:16px;
-      letter-spacing:-.1px;
     }
+
     .links{
       margin:0;
       padding-left:18px;
-      color: rgba(255,255,255,.88);
+      color: rgba(255,255,255,.9);
     }
+
     .links li{
       margin:8px 0;
-      line-height:1.35;
     }
+
     .links a{
       color:#ffffff;
       text-decoration: underline;
-      text-underline-offset: 3px;
     }
+
     .muted{
       color: rgba(255,255,255,.65);
       font-size:13px;
-      margin-top:6px;
+      margin-left:6px;
     }
 
-    /* Coming soon tag */
     .soon{
       display:inline-block;
       margin-top:8px;
@@ -114,20 +125,22 @@
     }
 
     footer{
-      margin-top:16px;
+      margin-top:18px;
       color: rgba(255,255,255,.55);
       font-size:13px;
     }
   </style>
 </head>
+
 <body>
   <main class="wrap">
-    <br />
     <div class="card">
+
       <h1>Nikki Safarova</h1>
       <p class="sub">MIS 7375 — Transaction Processing Systems</p>
 
-      <div class="grid" aria-label="Homework folders">
+      <!-- GRID -->
+      <div class="grid">
         <a class="tile" href="./hw1/">
           <strong>Homework 1</strong>
           <div class="tag">/hw1/</div>
@@ -136,7 +149,6 @@
         <a class="tile" href="./hw2/">
           <strong>Homework 2</strong>
           <div class="tag">/hw2/</div>
-          <div class="soon">Coming soon</div>
         </a>
 
         <a class="tile" href="./hw3/">
@@ -152,25 +164,46 @@
         </a>
       </div>
 
-      <div class="details" aria-label="Homework 1 deliverables">
+      <!-- HW1 -->
+      <div class="details">
         <h2>Homework 1 — Deliverables</h2>
         <ul class="links">
           <li>
             <a href="./hw1/index.html">Patient Registration Form</a>
-            <span class="muted">— HTML form hosted on GitHub Pages</span>
+            <span class="muted">HTML form (basic UI)</span>
           </li>
           <li>
             <a href="./hw1/mis7375-hw1-data-dictionary.pdf">Data Dictionary</a>
-            <span class="muted">— spreadsheet with field definitions</span>
+            <span class="muted">field definitions and structure</span>
           </li>
           <li>
             <a href="./hw1/mis7375-hw1-diagram.pdf">Diagram / Wireframe</a>
-            <span class="muted">— form layout wireframe created in Figma</span>
+            <span class="muted">form layout design</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- HW2 -->
+      <div class="details">
+        <h2>Homework 2 — Deliverables</h2>
+        <ul class="links">
+          <li>
+            <a href="./hw2/index.html">Enhanced Patient Form</a>
+            <span class="muted">validation, review system, improved UX</span>
+          </li>
+          <li>
+            <a href="./hw2/synopsis.html">Synopsis</a>
+            <span class="muted">overview of improvements and features</span>
+          </li>
+          <li>
+            <a href="./hw2/pseudocode.html">Pseudocode</a>
+            <span class="muted">full logic of form behavior</span>
           </li>
         </ul>
       </div>
 
       <footer>© <span id="year"></span> Nikki Safarova</footer>
+
     </div>
   </main>
 

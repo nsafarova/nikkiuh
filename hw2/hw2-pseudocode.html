@@ -1,0 +1,235 @@
+<!doctype html>
+<!--
+    Name: Nikki Safarova
+    File: pseudocode.html
+    Date Created: 2026-03-27
+    Purpose: MIS 7375 Homework 2 Pseudocode for MediForm Patient Registration Form
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>HW2 Pseudocode - MediForm</title>
+
+    <style>
+      body {
+        background: #d2eaf6;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        padding: 40px 20px;
+      }
+
+      .container {
+        background: #ffffff;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(15, 110, 140, 0.08);
+        margin: 0 auto;
+        max-width: 900px;
+        padding: 30px;
+      }
+
+      h1 {
+        color: #0f6e8c;
+        margin-bottom: 10px;
+      }
+
+      h2 {
+        color: #0f6e8c;
+        margin-top: 25px;
+      }
+
+      pre {
+  background: #0b1020;
+  color: #e6edf3;
+  border-radius: 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 15px;
+  line-height: 1.7;
+  padding: 20px;
+  white-space: pre-wrap;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>MIS 7375 Homework 2</h1>
+      <h2>MediForm Patient Registration Form Pseudocode</h2>
+
+      <pre>
+START
+
+Load the registration page
+
+Display today’s date in MM/DD/YYYY format
+
+Find the urgency slider
+Display the current slider value next to the slider
+Whenever the slider changes, update the displayed value
+
+When the user types in the User ID field
+    Convert all letters to lowercase
+    Redisplay the lowercase version in the field
+
+When the user types in the Phone Number field
+    Remove all non-digit characters
+    Format the digits as 123-456-7890
+    Redisplay the formatted phone number in the field
+
+When the user types in either Password field
+    Read password 1
+    Read password 2
+    Read user ID
+    Read first name
+    Read last name
+
+    If both password fields are empty
+        Clear password message
+    Else if password contains or matches user ID, first name, or last name
+        Display error message:
+        "Password cannot match or contain your user ID, first name, or last name."
+    Else if password 2 is empty
+        Display message:
+        "Please re-enter your password."
+    Else if password 1 matches password 2
+        Display message:
+        "Passwords match."
+    Else
+        Display message:
+        "Passwords do not match."
+
+When the user clicks the Review button
+    Read all entered form values:
+        First name
+        Middle initial
+        Last name
+        Gender
+        Date of birth
+        SSN
+        Address line 1
+        Address line 2
+        City
+        State
+        ZIP code
+        Email
+        Phone number
+        Checkboxes
+        Textarea
+        Slider value
+        Vaccination status
+        Insurance status
+        User ID
+        Password
+        Confirm password
+
+    Convert user ID to lowercase again before displaying it
+
+    Build full name
+        If middle initial exists
+            Include middle initial in full name
+
+    Build full address
+        Start with address line 1
+        If address line 2 exists
+            Add address line 2
+        Add city, state, and ZIP code if they exist
+
+    Validate first and last name
+        If missing
+            Set status to ERROR
+        Else if format is invalid
+            Set status to ERROR
+        Else
+            Set status to PASS
+
+    Validate date of birth
+        If missing
+            Set status to ERROR
+        Else if date is in the future
+            Set status to ERROR
+        Else if date is more than 120 years ago
+            Set status to ERROR
+        Else
+            Set status to PASS
+
+    Validate email
+        If missing
+            Set status to ERROR
+        Else if format is invalid
+            Set status to ERROR
+        Else
+            Set status to PASS
+
+    Validate phone number
+        If missing
+            Set status to ERROR
+        Else if format is not 123-456-7890
+            Set status to ERROR
+        Else
+            Set status to PASS
+
+    Validate address
+        If required parts are missing
+            Set status to ERROR
+        Else if ZIP format is invalid
+            Set status to ERROR
+        Else
+            Set status to PASS
+
+    Validate user ID
+        If missing
+            Set status to ERROR
+        Else if user ID format is invalid
+            Set status to ERROR
+        Else
+            Set status to PASS
+
+    Validate password
+        If password fields are missing
+            Set status to ERROR
+        Else if passwords do not match
+            Set status to ERROR
+        Else if password contains personal information
+            Set status to ERROR
+        Else
+            Set status to PASS
+
+    If no checkboxes are selected
+        Display "None selected"
+    Else
+        Display selected reasons joined together
+
+    If textarea is empty
+        Display "No details entered"
+    Else
+        Display textarea contents
+
+    Build the review section output
+        Show patient information
+        Show contact information
+        Show requested visit information
+        Show account information
+        Show PASS or ERROR beside important fields
+
+    Insert review output into the page
+    Make review section visible
+
+When the user clicks the Clear button
+    Reset all form fields
+    Clear password message
+    Clear review content
+    Hide the review section again
+
+When the user clicks the Submit button
+    Browser runs built-in HTML validation
+    If the form is valid
+        Go to thankyou.html
+    Else
+        Show browser validation messages
+
+END
+    </pre
+      >
+    </div>
+  </body>
+</html>
