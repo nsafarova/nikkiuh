@@ -3,7 +3,7 @@
     Name: Nikki Safarova
     File: hw3-pseudocode.html
     Date Created: 2026-04-17
-    Purpose: MIS 7375 Homework 3 Pseudocode – Validate Button Logic
+    Purpose: MIS 7375 Homework 3 Pseudocode – MediForm Validation Logic
 -->
 
 <html lang="en">
@@ -43,14 +43,11 @@
       white-space: pre-wrap;
     }
 
-    .kw   { color: #ff7b72; }   /* keywords: IF, ELSE, RETURN, FUNCTION  */
-    .fn   { color: #79c0ff; }   /* function names                         */
-    .str  { color: #a5d6ff; }   /* strings / field names                  */
-    .cmt  { color: #8b949e; font-style: italic; }  /* comments            */
-    .ok   { color: #56d364; }   /* PASS                                   */
-    .err  { color: #ff7b72; }   /* ERROR                                  */
-
-    a { color: #0f6e8c; }
+    .kw   { color: #ff7b72; }                        /* IF, ELSE, RETURN, WHEN, FOR EACH */
+    .sec  { color: #79c0ff; }                        /* section / step headings           */
+    .cmt  { color: #8b949e; font-style: italic; }   /* comments                          */
+    .ok   { color: #56d364; }                        /* PASS / TRUE                       */
+    .err  { color: #ff7b72; }                        /* ERROR / FALSE                     */
   </style>
 </head>
 
@@ -60,230 +57,200 @@
     <h1>MIS 7375 – Homework 3</h1>
     <p style="color:#666; margin-top:4px;">Nikki Safarova &nbsp;|&nbsp; April 17, 2026</p>
 
+    <!-- ── PAGE LOAD ── -->
     <h2>Pseudocode — Page Load &amp; General Behavior</h2>
     <pre>
-<span class="cmt">-- Runs immediately when the page loads --</span>
+<span class="cmt">-- Runs automatically when the page loads --</span>
 
-<span class="kw">ON</span> page load:
-    Display today's date in MM/DD/YYYY format
+<span class="kw">WHEN</span> page loads:
+    Display today's date in the header
 
-    Set slider display value = slider default value (1)
-    <span class="kw">WHEN</span> slider moves → update displayed value next to slider
+    Set urgency slider starting value to 1
+    <span class="kw">WHEN</span> user moves slider → update the number shown next to it
 
     Hide the Submit button
-    Inject a <span class="str">"Validate"</span> button before Submit
+    <span class="kw">WHEN</span> user edits any field → hide Submit button again
 
-    <span class="cmt">-- Wire up live validation for every field --</span>
-    <span class="kw">FOR EACH</span> text/password/email/tel input:
-        <span class="kw">ON</span> input  → call that field's validate function
-        <span class="kw">ON</span> blur   → call that field's validate function
+    <span class="cmt">-- Attach live validation to every field --</span>
+    <span class="kw">FOR EACH</span> text, email, phone, and password field:
+        <span class="kw">WHEN</span> user types  → validate that field immediately
+        <span class="kw">WHEN</span> user leaves → validate that field immediately
 
-    <span class="kw">FOR EACH</span> radio/checkbox/select:
-        <span class="kw">ON</span> change → call that field's validate function
+    <span class="kw">FOR EACH</span> dropdown, radio button, and checkbox group:
+        <span class="kw">WHEN</span> user makes a selection → validate that field immediately
 
-    <span class="kw">ON</span> any form field change → hide Submit button again
-
-    <span class="cmt">-- Clear button behavior --</span>
-    <span class="kw">ON</span> Clear click:
-        Reset all form fields to blank / defaults
-        Clear all error messages
-        Clear review panel
-        Hide Submit button
-        Hide password strength bar
+    <span class="cmt">-- Clear button --</span>
+    <span class="kw">WHEN</span> user clicks Clear:
+        Reset all fields to blank or default values
+        Remove all error messages from the screen
+        Hide the review panel
+        Hide the Submit button
+        Hide the password strength bar
 </pre>
 
-    <h2>Pseudocode — VALIDATE Button (Core Logic)</h2>
+    <!-- ── VALIDATE BUTTON ── -->
+    <h2>Pseudocode — Validate Button</h2>
     <pre>
-<span class="cmt">-- Called when user clicks the Validate button --</span>
+<span class="cmt">-- Runs when user clicks the Validate button --</span>
 
-<span class="kw">FUNCTION</span> <span class="fn">validateForm</span>():
+<span class="kw">WHEN</span> Validate is clicked:
 
-    <span class="cmt">-- Run EVERY validator (no short-circuit so ALL errors show at once) --</span>
-    results = [
-        <span class="fn">validateFirstname</span>(),
-        <span class="fn">validateMiddleinit</span>(),
-        <span class="fn">validateLastname</span>(),
-        <span class="fn">validateGender</span>(),
-        <span class="fn">validateDob</span>(),
-        <span class="fn">validateSsn</span>(),
-        <span class="fn">validateAddr1</span>(),
-        <span class="fn">validateAddr2</span>(),
-        <span class="fn">validateCity</span>(),
-        <span class="fn">validateState</span>(),
-        <span class="fn">validateZip</span>(),
-        <span class="fn">validateEmail</span>(),
-        <span class="fn">validatePhone</span>(),
-        <span class="fn">validateHistory</span>(),   <span class="cmt">-- also validates symptoms textarea</span>
-        <span class="fn">validateVaccinated</span>(),
-        <span class="fn">validateInsurance</span>(),
-        <span class="fn">validateUserid</span>(),
-        <span class="fn">validatePassword</span>(),
-        <span class="fn">validatePassword2</span>()
-    ]
+    Check every required field <span class="cmt">(all checks run so all errors appear at once)</span>:
 
-    <span class="kw">IF</span> ALL results are TRUE:
-        Show Submit button   <span class="ok">→ PASS</span>
-        <span class="kw">RETURN</span> TRUE
+        <span class="sec">Check First Name</span>
+        <span class="sec">Check Middle Initial</span>
+        <span class="sec">Check Last Name</span>
+        <span class="sec">Check Gender selection</span>
+        <span class="sec">Check Date of Birth</span>
+        <span class="sec">Check Social Security Number</span>
+        <span class="sec">Check Street Address Line 1</span>
+        <span class="sec">Check Street Address Line 2</span>
+        <span class="sec">Check City</span>
+        <span class="sec">Check State selection</span>
+        <span class="sec">Check ZIP Code</span>
+        <span class="sec">Check Email Address</span>
+        <span class="sec">Check Phone Number</span>
+        <span class="sec">Check Reason for Visit and Symptom Description</span>
+        <span class="sec">Check Vaccination Status</span>
+        <span class="sec">Check Insurance Status</span>
+        <span class="sec">Check Username</span>
+        <span class="sec">Check Password</span>
+        <span class="sec">Check Confirm Password</span>
+
+    <span class="kw">IF</span> all 19 checks passed:
+        Show the Submit button   <span class="ok">→ PASS</span>
     <span class="kw">ELSE</span>:
-        Keep Submit hidden   <span class="err">→ FAIL</span>
-        <span class="kw">RETURN</span> FALSE
-
-
-<span class="cmt">────────────────────────────────────────────────────
-  INDIVIDUAL VALIDATOR LOGIC
-────────────────────────────────────────────────────</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateFirstname</span>():
-    value = trim(firstname field)
-    <span class="kw">IF</span> empty                        → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> not matching [A-Za-z'-]{1,30} → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateMiddleinit</span>():
-    value = trim(middleinit field)
-    <span class="kw">IF</span> empty                        → clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>  <span class="cmt">(optional)</span>
-    <span class="kw">IF</span> not matching [A-Za-z]{1}      → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateLastname</span>():
-    <span class="cmt">-- Same logic as validateFirstname --</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateGender</span>():
-    <span class="kw">IF</span> no radio button checked       → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateDob</span>():
-    value = date picker value
-    <span class="kw">IF</span> empty                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    Parse year, month, day from value
-    Build Date object from parsed parts
-    today    = today's date at midnight
-    minDate  = today minus 120 years
-    <span class="kw">IF</span> selected date > today         → showError "Cannot be in the future", <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> selected date < minDate       → showError "More than 120 years ago", <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateSsn</span>():
-    Auto-format input (insert dashes after digits 3 and 5)
-    value = ssn field value
-    <span class="kw">IF</span> empty                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> not matching ###-##-####       → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateAddr1</span>():
-    value = trim(addr1 field)
-    <span class="kw">IF</span> empty                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> length < 2 OR > 30            → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> contains disallowed characters → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateAddr2</span>():
-    value = trim(addr2 field)
-    <span class="kw">IF</span> empty                         → clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>  <span class="cmt">(optional)</span>
-    <span class="kw">IF</span> length < 2 OR > 30            → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> contains disallowed characters → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateCity</span>():
-    value = trim(city field)
-    <span class="kw">IF</span> empty                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> length < 2 OR > 30            → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> contains digits or symbols     → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateState</span>():
-    <span class="kw">IF</span> dropdown value is empty        → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateZip</span>():
-    value = trim(zip field)
-    <span class="kw">IF</span> empty                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> not matching exactly 5 digits  → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateEmail</span>():
-    Auto-lowercase the email field value
-    value = trim(email field)
-    <span class="kw">IF</span> empty                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> not matching name@domain.tld   → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validatePhone</span>():
-    Auto-format input as ###-###-####
-    value = phone field value
-    <span class="kw">IF</span> empty                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> not matching ###-###-####      → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateHistory</span>():
-    <span class="cmt">-- Checkboxes are optional; delegates to validateSymptoms --</span>
-    <span class="kw">RETURN</span> <span class="fn">validateSymptoms</span>()
-
-<span class="kw">FUNCTION</span> <span class="fn">validateSymptoms</span>():
-    value = trim(textarea)
-    <span class="kw">IF</span> empty                         → <span class="kw">RETURN</span> <span class="ok">TRUE</span>  <span class="cmt">(optional)</span>
-    <span class="kw">IF</span> length > 500                  → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> contains HTML tags            → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateVaccinated</span>() / <span class="fn">validateInsurance</span>():
-    <span class="kw">IF</span> no radio button checked        → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validateUserid</span>():
-    Auto-lowercase the userid field value
-    value = trim(userid field)
-    <span class="kw">IF</span> empty                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> starts with a digit            → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> contains spaces               → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> not matching [a-z][a-z0-9_-]{4,29} → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validatePassword</span>():
-    pw      = password field value
-    userid  = userid field value (lowercase)
-    fname   = firstname field value
-    lname   = lastname field value
-    <span class="kw">IF</span> empty                              → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> length < 8                         → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> no uppercase letter               → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> no lowercase letter               → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> no digit                          → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> password (lowercase) equals userid
-       OR contains userid, fname, or lname → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError
-    <span class="kw">IF</span> confirm field is not empty → re-run validatePassword2()
-    <span class="kw">RETURN</span> <span class="ok">TRUE</span>
-
-<span class="kw">FUNCTION</span> <span class="fn">validatePassword2</span>():
-    pw  = password field value
-    pw2 = confirm password field value
-    <span class="kw">IF</span> pw2 is empty                   → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    <span class="kw">IF</span> pw ≠ pw2                       → showError, <span class="kw">RETURN</span> <span class="err">FALSE</span>
-    clearError, <span class="kw">RETURN</span> <span class="ok">TRUE</span>
+        Keep Submit hidden       <span class="err">→ one or more fields failed</span>
 </pre>
 
+    <!-- ── INDIVIDUAL FIELD RULES ── -->
+    <h2>Pseudocode — Individual Field Rules</h2>
+    <pre>
+<span class="sec">First Name / Last Name:</span>
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> longer than 30 characters         → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> contains digits or symbols        → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Middle Initial:</span>
+    <span class="kw">IF</span> field is empty                    → clear error          <span class="ok">PASS</span>  <span class="cmt">(optional)</span>
+    <span class="kw">IF</span> more than 1 character             → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> not a letter                      → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Gender:</span>
+    <span class="kw">IF</span> no option is selected             → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Date of Birth:</span>
+    <span class="kw">IF</span> no date entered                   → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> date is in the future             → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> date is more than 120 years ago   → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Social Security Number:</span>
+    As user types → automatically insert dashes (e.g. 123-45-6789)
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> not in format ###-##-####         → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Street Address Line 1:</span>
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> shorter than 2 or longer than 30  → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> contains disallowed characters    → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Street Address Line 2:</span>
+    <span class="kw">IF</span> field is empty                    → clear error          <span class="ok">PASS</span>  <span class="cmt">(optional)</span>
+    <span class="kw">IF</span> shorter than 2 or longer than 30  → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> contains disallowed characters    → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">City:</span>
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> shorter than 2 or longer than 30  → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> contains digits or symbols        → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">State:</span>
+    <span class="kw">IF</span> no state selected from dropdown   → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">ZIP Code:</span>
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> not exactly 5 digits              → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Email Address:</span>
+    Convert typed letters to lowercase automatically
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> not in format name@domain.ext     → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Phone Number:</span>
+    As user types → automatically insert dashes (e.g. 123-456-7890)
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> not in format ###-###-####        → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Reason for Visit (checkboxes) and Symptom Description:</span>
+    Checkboxes are optional — no validation required
+    <span class="kw">IF</span> symptom description is empty      → clear error          <span class="ok">PASS</span>  <span class="cmt">(optional)</span>
+    <span class="kw">IF</span> description is longer than 500 characters → show error  <span class="err">FAIL</span>
+    <span class="kw">IF</span> description contains HTML code   → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Vaccination Status / Insurance Status:</span>
+    <span class="kw">IF</span> no Yes/No option is selected      → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Username:</span>
+    Convert typed letters to lowercase automatically
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> first character is not a letter   → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> shorter than 5 or longer than 30  → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> contains spaces or special symbols → show error          <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+
+<span class="sec">Password:</span>
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> shorter than 8 characters         → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> no uppercase letter               → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> no lowercase letter               → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> no number                         → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> password contains username, first name, or last name
+                                         → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+        <span class="kw">IF</span> Confirm Password is already filled in → re-check it
+
+<span class="sec">Confirm Password:</span>
+    <span class="kw">IF</span> field is empty                    → show error           <span class="err">FAIL</span>
+    <span class="kw">IF</span> does not match Password           → show error           <span class="err">FAIL</span>
+    <span class="kw">ELSE</span>                                 → clear error          <span class="ok">PASS</span>
+</pre>
+
+    <!-- ── PASSWORD STRENGTH ── -->
     <h2>Pseudocode — Password Strength Meter</h2>
     <pre>
-<span class="cmt">-- Runs on every keystroke in the password field --</span>
+<span class="cmt">-- Runs on every keystroke in the Password field --</span>
 
-<span class="kw">FUNCTION</span> <span class="fn">updateStrength</span>():
-    pw    = password field value
-    score = 0
+<span class="kw">WHEN</span> user types in the Password field:
 
-    <span class="kw">IF</span> pw is empty → hide bar, clear label, <span class="kw">RETURN</span>
+    <span class="kw">IF</span> field is empty → hide strength bar and label, stop
+
     Show the strength bar
+    Start with a score of 0
 
-    <span class="kw">IF</span> length ≥ 8         → score + 1
-    <span class="kw">IF</span> length ≥ 12        → score + 1
-    <span class="kw">IF</span> has uppercase      → score + 1
-    <span class="kw">IF</span> has lowercase      → score + 1
-    <span class="kw">IF</span> has digit          → score + 1
-    <span class="kw">IF</span> has special char   → score + 1
+    <span class="kw">IF</span> password is at least 8 characters long   → add 1 point
+    <span class="kw">IF</span> password is at least 12 characters long  → add 1 point
+    <span class="kw">IF</span> password contains an uppercase letter    → add 1 point
+    <span class="kw">IF</span> password contains a lowercase letter     → add 1 point
+    <span class="kw">IF</span> password contains a number              → add 1 point
+    <span class="kw">IF</span> password contains a special character    → add 1 point
 
-    <span class="kw">IF</span> score ≤ 2  → bar = 33%,  color = red,    label = <span class="err">"Weak"</span>
-    <span class="kw">IF</span> score ≤ 4  → bar = 66%,  color = orange, label = <span class="str">"Medium"</span>
-    <span class="kw">ELSE</span>          → bar = 100%, color = green,  label = <span class="ok">"Strong"</span>
+    <span class="kw">IF</span> score is 0–2  → show bar at 33%,  color red,    label <span class="err">"Weak"</span>
+    <span class="kw">IF</span> score is 3–4  → show bar at 66%,  color orange, label "Medium"
+    <span class="kw">IF</span> score is 5–6  → show bar at 100%, color green,  label <span class="ok">"Strong"</span>
 </pre>
 
     <div style="margin-top:30px; display:flex; gap:12px;">
