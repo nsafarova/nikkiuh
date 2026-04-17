@@ -1,0 +1,161 @@
+<!doctype html>
+<!--
+    Name: Nikki Safarova
+    File: hw3-synopsis.html
+    Date Created: 2026-04-17
+    Purpose: MIS 7375 Homework 3 Synopsis
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HW3 Synopsis – MediForm</title>
+
+  <style>
+    body {
+      background: #d2eaf6;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(15, 110, 140, 0.08);
+      margin: 0 auto;
+      max-width: 800px;
+      padding: 40px;
+    }
+
+    h1 { color: #0f6e8c; margin-bottom: 4px; }
+    h2 { color: #0f6e8c; margin-top: 30px; border-bottom: 2px solid #d2eaf6; padding-bottom: 6px; }
+
+    p  { line-height: 1.7; margin-bottom: 14px; }
+
+    ul {
+      line-height: 1.9;
+      margin-bottom: 14px;
+      padding-left: 22px;
+    }
+
+    .tag {
+      background: #d2eaf6;
+      border-radius: 6px;
+      color: #0f6e8c;
+      display: inline-block;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 4px;
+      padding: 2px 8px;
+    }
+
+    .happy  { border-left: 4px solid #16a34a; padding-left: 14px; }
+    .missing { border-left: 4px solid #b45309; padding-left: 14px; }
+
+    a { color: #0f6e8c; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>MIS 7375 – Homework 3</h1>
+    <p style="color:#666; margin-top:4px;">Nikki Safarova &nbsp;|&nbsp; April 17, 2026</p>
+
+    <!-- ── SYNOPSIS ── -->
+    <h2>What the Form Does</h2>
+    <p>
+      The MediForm Patient Registration Form is a fully client-side web application that collects
+      and validates the information a new patient would provide when registering at a medical clinic.
+      The form is organized into four sections: <strong>Patient Information</strong>,
+      <strong>Patient Contact Information</strong>, <strong>Reason for Visit</strong>, and
+      <strong>Create Account</strong>.
+    </p>
+    <p>
+      Every field is validated in JavaScript — both in real time as the user types and again when
+      the Validate button is clicked. Required fields are marked with a red asterisk. Error messages
+      appear directly beneath each field and are pre-reserved in the layout so the page never jumps
+      when a message appears or disappears. The Submit button is hidden until every field passes
+      validation. Clicking Submit navigates to a thank-you confirmation page.
+    </p>
+    <p>
+      Fields collected include: full name, gender, date of birth, SSN (obscured),
+      address, email, phone, visit reason checkboxes, symptom description, urgency slider,
+      vaccination and insurance status, and a user ID with password.
+    </p>
+
+    <!-- ── HAPPY WITH ── -->
+    <h2>What I Am Particularly Happy With</h2>
+
+    <div class="happy">
+      <ul>
+        <li>
+          <strong>Real-time validation with no page jumps.</strong>
+          Every field validates on each keystroke and on blur. Error divs have a fixed
+          <code>min-height</code> so the layout stays stable when messages appear or clear.
+        </li>
+        <li>
+          <strong>Auto-formatting fields.</strong>
+          The SSN field automatically inserts dashes after the 3rd and 5th digit as you type
+          (e.g. <code>123-45-6789</code>). The phone field formats to <code>###-###-####</code>
+          the same way. Both feel natural and reduce user errors.
+        </li>
+        <li>
+          <strong>Validate → Submit gating.</strong>
+          The Submit button is hidden by default and only revealed after every single validator
+          returns true. If the user edits any field after passing validation, Submit hides again
+          automatically. Enter-key submission is also blocked by an <code>onsubmit</code> guard.
+        </li>
+        <li>
+          <strong>Password strength meter.</strong>
+          A color-coded animated bar (Weak / Medium / Strong) appears below the password field
+          as the user types, giving instant feedback without waiting for a validation error.
+        </li>
+        <li>
+          <strong>Password security checks.</strong>
+          The password cannot match or contain the user's ID, first name, or last name. It requires
+          at least one uppercase letter, one lowercase letter, and one digit.
+        </li>
+        <li>
+          <strong>Review panel with PASS/ERROR status.</strong>
+          Clicking the Review button displays a full summary of all entered data with color-coded
+          PASS/ERROR badges for every required field — including gender, SSN (masked), vaccinated,
+          and insurance status which are easy to miss.
+        </li>
+        <li>
+          <strong>Symptoms character counter.</strong>
+          The textarea tracks characters in real time (0 / 500) and turns red when approaching
+          the limit, preventing oversized submissions.
+        </li>
+      </ul>
+    </div>
+
+    <!-- ── DIDN'T GET WORKING ── -->
+    <h2>What I Did Not Yet Get Fully Working</h2>
+
+    <div class="missing">
+      <ul>
+        <li>
+          <strong>Deprecated HTML tags.</strong>
+          The form table still uses the <code>&lt;center&gt;</code> tag for layout centering,
+          which is deprecated in modern HTML. This should be replaced with CSS
+          <code>margin: auto</code>.
+        </li>
+        <li>
+          <strong>Server-side validation.</strong>
+          All validation is client-side JavaScript only. A real medical registration system would
+          require server-side validation to prevent tampered or bypassed submissions, as well as
+          secure storage of sensitive data like SSN.
+        </li>
+      </ul>
+    </div>
+
+    <div style="margin-top:30px; display:flex; gap:12px;">
+      <a href="homework3.html" style="background:#0e7490; color:#fff; padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:bold;">← Registration Form</a>
+      <a href="hw3-pseudocode.html" style="background:#0e7490; color:#fff; padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:bold;">→ Pseudocode</a>
+    </div>
+
+  </div>
+</body>
+</html>
