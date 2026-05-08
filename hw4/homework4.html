@@ -1,0 +1,694 @@
+<!doctype html>
+<!--
+    Name: Nikki Safarova
+    File: homework4.html
+    Date Created: 2026-02-21
+    Date Updated: 2026-05-08
+    Purpose: MIS 7375 Homework 4 - MediForm Patient Registration Form HTML
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>MediForm Patient Registration</title>
+
+    <!-- External CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- FIXED HEADER -->
+    <div id="header">
+      <table width="100%">
+        <tr>
+          <td>
+            <img src="logo.png" alt="MediForm Logo" width="150" />
+          </td>
+
+          <td align="right">
+            <div id="welcomeMessage">Welcome new user!</div>
+
+            <span id="today">Loading date...</span>
+
+            <div id="weatherBox">Loading weather...</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- BODY SECTION -->
+    <div id="body">
+      <h2>MediForm Patient Registration Form</h2>
+
+      <form
+        id="patientForm"
+        action="thankyou.html"
+        onsubmit="return validateForm();"
+      >
+        <div class="formContainer">
+          <table class="formTable" cellpadding="8">
+            <!-- PERSONAL INFORMATION -->
+            <tr>
+              <th colspan="3">Patient Information</th>
+            </tr>
+
+            <!-- NAME -->
+            <tr>
+              <td>
+                <label for="firstname">
+                  First Name <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  maxlength="30"
+                  pattern="[A-Za-z'-]{1,30}"
+                  required
+                  placeholder="Enter first name"
+                  title="Only letters, apostrophes, and dashes allowed."
+                />
+
+                <div id="firstnameError" class="errorMessage"></div>
+              </td>
+
+              <td width="110">
+                <label for="middleinit"> Middle Initial </label>
+
+                <br />
+
+                <input
+                  type="text"
+                  id="middleinit"
+                  name="middleinit"
+                  maxlength="1"
+                  pattern="[A-Za-z]{1}"
+                  placeholder="M"
+                  title="Enter 1 letter only."
+                />
+
+                <div id="middleinitError" class="errorMessage"></div>
+              </td>
+
+              <td>
+                <label for="lastname">
+                  Last Name <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  maxlength="30"
+                  pattern="[A-Za-z'-]{1,30}"
+                  required
+                  placeholder="Enter last name"
+                  title="Only letters, apostrophes, and dashes allowed."
+                />
+
+                <div id="lastnameError" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- GENDER -->
+            <tr>
+              <td colspan="3">
+                Patient's Gender
+                <span class="req">*</span>
+
+                <br />
+
+                <input
+                  type="radio"
+                  id="genderMale"
+                  name="gender"
+                  value="Male"
+                  required
+                />
+
+                <label for="genderMale">Male</label>
+
+                &nbsp;&nbsp;
+
+                <input
+                  type="radio"
+                  id="genderFemale"
+                  name="gender"
+                  value="Female"
+                />
+
+                <label for="genderFemale">Female</label>
+
+                &nbsp;&nbsp;
+
+                <input
+                  type="radio"
+                  id="genderOther"
+                  name="gender"
+                  value="Other"
+                />
+
+                <label for="genderOther">Other</label>
+
+                <div id="genderError" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- DOB + SSN -->
+            <tr>
+              <td colspan="2">
+                <label for="dob">
+                  Date of Birth <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input type="date" id="dob" name="dob" required />
+
+                <div id="dobError" class="errorMessage"></div>
+              </td>
+
+              <td>
+                <label for="ssn"> SSN <span class="req">*</span> </label>
+
+                <br />
+
+                <input
+                  type="password"
+                  id="ssn"
+                  name="ssn"
+                  placeholder="***-**-****"
+                  maxlength="11"
+                  required
+                />
+
+                <div id="ssnError" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- CONTACT INFORMATION -->
+            <tr>
+              <th colspan="3">Patient Contact Information</th>
+            </tr>
+
+            <!-- ADDRESS -->
+            <tr>
+              <td colspan="2">
+                <label for="addr1">
+                  Address Line 1 <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input
+                  type="text"
+                  id="addr1"
+                  name="addr1"
+                  minlength="2"
+                  maxlength="30"
+                  placeholder="1234 Main St"
+                  required
+                />
+
+                <div id="addr1Error" class="errorMessage"></div>
+              </td>
+
+              <td>
+                <label for="addr2"> Address Line 2 </label>
+
+                <br />
+
+                <input
+                  type="text"
+                  id="addr2"
+                  name="addr2"
+                  minlength="2"
+                  maxlength="30"
+                  placeholder="Apt, Suite, etc"
+                />
+
+                <div id="addr2Error" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- CITY STATE ZIP -->
+            <tr>
+              <td>
+                <label for="city"> City <span class="req">*</span> </label>
+
+                <br />
+
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  minlength="2"
+                  maxlength="30"
+                  required
+                  placeholder="Houston"
+                />
+
+                <div id="cityError" class="errorMessage"></div>
+              </td>
+
+              <td>
+                <label for="state"> State <span class="req">*</span> </label>
+
+                <br />
+
+                <select id="state" name="state" required>
+                  <option value="">Loading states...</option>
+                </select>
+
+                <div id="stateError" class="errorMessage"></div>
+              </td>
+
+              <td>
+                <label for="zip"> Zip Code <span class="req">*</span> </label>
+
+                <br />
+
+                <input
+                  type="text"
+                  id="zip"
+                  name="zip"
+                  maxlength="5"
+                  placeholder="77002"
+                  required
+                />
+
+                <div id="zipError" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- EMAIL + PHONE -->
+            <tr>
+              <td colspan="2">
+                <label for="email">
+                  Email Address <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="name@domain.com"
+                  required
+                />
+
+                <div id="emailError" class="errorMessage"></div>
+              </td>
+
+              <td>
+                <label for="phone">
+                  Phone Number <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  maxlength="12"
+                  placeholder="123-456-7890"
+                  required
+                />
+
+                <div id="phoneError" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- VISIT REASON -->
+            <tr>
+              <th colspan="3">Reason for Your Visit</th>
+            </tr>
+
+            <!-- CHECKBOXES -->
+            <tr>
+              <td colspan="2">
+                Please select the reason(s) for your visit:
+
+                <br /><br />
+
+                <input
+                  type="checkbox"
+                  id="historyFever"
+                  name="history"
+                  value="Fever"
+                />
+
+                <label for="historyFever">Fever</label>
+
+                <br />
+
+                <input
+                  type="checkbox"
+                  id="historyHeartDisease"
+                  name="history"
+                  value="Heart Disease"
+                />
+
+                <label for="historyHeartDisease"> Heart Disease </label>
+
+                <br />
+
+                <input
+                  type="checkbox"
+                  id="historyVaccinations"
+                  name="history"
+                  value="Vaccinations"
+                />
+
+                <label for="historyVaccinations"> Vaccinations </label>
+
+                <br />
+
+                <input
+                  type="checkbox"
+                  id="historyCheckup"
+                  name="history"
+                  value="Checkup"
+                />
+
+                <label for="historyCheckup"> Checkup </label>
+
+                <br />
+
+                <input
+                  type="checkbox"
+                  id="historyAllergy"
+                  name="history"
+                  value="Allergy"
+                />
+
+                <label for="historyAllergy"> Allergy </label>
+
+                <div id="historyError" class="errorMessage"></div>
+              </td>
+
+              <td>
+                <label for="symptoms"> If any selected above, explain: </label>
+
+                <br />
+
+                <textarea
+                  id="symptoms"
+                  name="symptoms"
+                  rows="5"
+                  maxlength="500"
+                  placeholder="Describe symptoms..."
+                  oninput="updateCharCount()"
+                ></textarea>
+
+                <br />
+
+                <span id="charCount"> 0 / 500 </span>
+              </td>
+            </tr>
+
+            <!-- SLIDER -->
+            <tr>
+              <td colspan="3">
+                Urgency of Appointment
+
+                <br />
+
+                <span class="sliderNote">
+                  1 = not urgent | 10 = emergency
+                </span>
+
+                <br />
+
+                <input
+                  type="range"
+                  id="health_score"
+                  name="health_score"
+                  min="1"
+                  max="10"
+                  value="1"
+                />
+
+                <span id="scoreValue">1</span>
+              </td>
+            </tr>
+
+            <!-- VACCINATED -->
+            <tr>
+              <td colspan="3">
+                Have you been vaccinated?
+                <span class="req">*</span>
+
+                <br />
+
+                <input
+                  type="radio"
+                  id="vaccinatedYes"
+                  name="vaccinated"
+                  value="Yes"
+                  required
+                />
+
+                <label for="vaccinatedYes">Yes</label>
+
+                &nbsp;&nbsp;
+
+                <input
+                  type="radio"
+                  id="vaccinatedNo"
+                  name="vaccinated"
+                  value="No"
+                />
+
+                <label for="vaccinatedNo">No</label>
+
+                <div id="vaccinatedError" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- INSURANCE -->
+            <tr>
+              <td colspan="3">
+                Do you have insurance?
+                <span class="req">*</span>
+
+                <br />
+
+                <input
+                  type="radio"
+                  id="insuranceYes"
+                  name="insurance"
+                  value="Yes"
+                  required
+                />
+
+                <label for="insuranceYes">Yes</label>
+
+                &nbsp;&nbsp;
+
+                <input
+                  type="radio"
+                  id="insuranceNo"
+                  name="insurance"
+                  value="No"
+                />
+
+                <label for="insuranceNo">No</label>
+
+                <div id="insuranceError" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- ACCOUNT CREATION -->
+            <tr>
+              <th colspan="3">Create Account</th>
+            </tr>
+
+            <!-- USERNAME -->
+            <tr>
+              <td colspan="3">
+                <label for="userid">
+                  Username <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input
+                  type="text"
+                  id="userid"
+                  name="userid"
+                  maxlength="30"
+                  placeholder="Create user ID"
+                  required
+                />
+
+                <div id="useridError" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- PASSWORDS -->
+            <tr>
+              <td colspan="2">
+                <label for="password">
+                  Password <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  minlength="8"
+                  maxlength="30"
+                  placeholder="Enter password"
+                  required
+                />
+
+                <div id="strengthBar">
+                  <div id="strengthFill"></div>
+                </div>
+
+                <span id="strengthLabel"></span>
+
+                <div id="passwordError" class="errorMessage"></div>
+              </td>
+
+              <td>
+                <label for="password2">
+                  Confirm Password
+                  <span class="req">*</span>
+                </label>
+
+                <br />
+
+                <input
+                  type="password"
+                  id="password2"
+                  name="password2"
+                  minlength="8"
+                  maxlength="30"
+                  placeholder="Re-enter password"
+                  required
+                />
+
+                <div id="passwordMessage"></div>
+
+                <div id="password2Error" class="errorMessage"></div>
+              </td>
+            </tr>
+
+            <!-- COOKIE + LOCAL STORAGE -->
+            <tr>
+              <td colspan="3">
+                <input type="checkbox" id="rememberMe" checked />
+
+                <label for="rememberMe"> Remember me for future visits </label>
+              </td>
+            </tr>
+
+            <!-- BUTTONS -->
+            <tr>
+              <td colspan="3" align="right">
+                <input type="button" value="Review" onclick="showReview()" />
+
+                <input type="reset" value="Clear" onclick="clearReview()" />
+
+                <input type="submit" value="Submit" />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </form>
+
+      <!-- REVIEW SECTION -->
+      <div id="reviewSection" style="display: none">
+        <h3>PLEASE REVIEW THIS INFORMATION</h3>
+
+        <div id="reviewContent"></div>
+      </div>
+
+      <!-- HEALTH TIPS IFRAME -->
+      <div class="iframeSection">
+        <iframe src="health-tips.html" class="healthFrame" title="Health Tips">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- FIXED FOOTER -->
+    <div id="footer">
+      <table width="100%" cellpadding="10">
+        <tr>
+          <td width="12%">
+            <img src="logo.png" alt="MediForm Logo" width="150" />
+          </td>
+
+          <td width="30%">
+            <b>MediForm Medical Clinic</b>
+
+            <br /><br />
+
+            2450 Medical Plaza Drive
+
+            <br />
+
+            Houston TX, 77030
+          </td>
+
+          <td width="30%">
+            <b>Follow Us</b>
+
+            <br /><br />
+
+            <a href="#">Facebook</a>
+
+            <br />
+
+            <a href="#">Twitter</a>
+
+            <br />
+
+            <a href="#">Instagram</a>
+          </td>
+
+          <td width="12%" align="right">
+            <b>Need Help?</b>
+
+            <br /><br />
+
+            <button type="button">Contact Us</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- SESSION TIMEOUT WARNING MODAL -->
+    <div id="timeoutModal" class="timeoutModal">
+      <div class="timeoutBox">
+        <h3>Session Timeout Warning</h3>
+
+        <p>You have been inactive. Your form will reset soon.</p>
+
+        <p>
+          Time left:
+          <span id="timeoutCount">30</span>
+          seconds
+        </p>
+
+        <button type="button" onclick="continueSession()">
+          Continue Session
+        </button>
+      </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+  </body>
+</html>

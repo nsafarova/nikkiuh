@@ -1,0 +1,220 @@
+<!doctype html>
+<!--
+    Name: Nikki Safarova
+    File: hw4-synopsis.html
+    Date Created: 2026-05-08
+    Purpose: MIS 7375 Homework 4 Synopsis
+-->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>HW4 Synopsis – MediForm</title>
+
+  <style>
+    body {
+      background: #d2eaf6;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: #ffffff;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(15, 110, 140, 0.08);
+      margin: 0 auto;
+      max-width: 900px;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #0f6e8c;
+      margin-bottom: 4px;
+    }
+
+    h2 {
+      border-bottom: 2px solid #d2eaf6;
+      color: #0f6e8c;
+      margin-top: 30px;
+      padding-bottom: 6px;
+    }
+
+    p {
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    ul {
+      line-height: 1.9;
+      margin-bottom: 14px;
+      padding-left: 22px;
+    }
+
+    .happy {
+      border-left: 4px solid #16a34a;
+      padding-left: 14px;
+    }
+
+    .missing {
+      border-left: 4px solid #b45309;
+      padding-left: 14px;
+    }
+
+    img {
+      border: 1px solid #d7e8ef;
+      border-radius: 14px;
+      box-shadow: 0 10px 20px rgba(15, 110, 140, 0.08);
+      margin-top: 18px;
+      width: 100%;
+    }
+
+    a {
+      color: #0f6e8c;
+    }
+
+    .buttonLink {
+      background: #0e7490;
+      border-radius: 8px;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 10px 18px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>MIS 7375 – Homework 4</h1>
+
+    <p style="color:#666; margin-top:4px;">
+      Nikki Safarova &nbsp;|&nbsp; May 8, 2026
+    </p>
+
+    <!-- SYNOPSIS -->
+
+    <h2>What the Website Does</h2>
+
+    <p>
+      My website is a patient registration system called MediForm Medical Clinic.
+      The form allows users to enter personal information, contact details,
+      health visit reasons, vaccination and insurance information, and account credentials.
+      The website performs live JavaScript validation for all required fields
+      and provides immediate feedback when invalid data is entered.
+      The form also includes a review section where users can verify all entered information before final submission.
+    </p>
+
+    <p>
+      For Assignment 4 requirements, I implemented multiple advanced JavaScript and browser storage features.
+      I used the Fetch API in two different ways: first, to dynamically load the list of U.S. states
+      from a separate JSON file, and second, to retrieve live weather data from the OpenWeather API
+      and display it in the page header.
+      I also added an iframe on the page that displays a custom “Daily Health Tips” section
+      with responsive health information cards.
+    </p>
+
+    <p>
+      To satisfy the content protection requirement, I implemented both a fixed header
+      and fixed footer so important page elements always remain visible while scrolling.
+      For cookie usage, the website remembers the user’s first name and displays
+      a personalized “Welcome back” message when they revisit the page.
+      A “Start as new user” option was also implemented to clear cookies and reset the form.
+      In addition, local storage is used to automatically save and restore non-sensitive form information
+      so users do not lose progress when refreshing or reopening the page.
+    </p>
+
+    <p>
+      For the time-based event requirement, I implemented a live updating date and clock in the header
+      and also added a session timeout popup.
+      If the user stays inactive for too long, the website displays a warning countdown
+      and automatically resets the form for security purposes.
+    </p>
+
+    <img src="screenshot.png" alt="MediForm Screenshot" />
+
+    <!-- HAPPY WITH -->
+
+    <h2>What I Am Particularly Happy With</h2>
+
+    <div class="happy">
+
+      <ul>
+
+        <li>
+          <strong>Live Weather Integration:</strong>
+          I liked integrating the OpenWeather API into the header because it made the page
+          feel more dynamic and modern instead of looking like a static HTML form.
+        </li>
+
+        <li>
+          <strong>Cookies + Local Storage:</strong>
+          The combination of cookies and local storage makes the website behave more like
+          a real patient registration system by remembering users and restoring form progress automatically.
+        </li>
+
+        <li>
+          <strong>Session Timeout Popup:</strong>
+          The inactivity timeout feature gives the website a more realistic medical portal feel
+          and adds a small security element by resetting the form after inactivity.
+        </li>
+
+        <li>
+          <strong>Real-Time Validation:</strong>
+          Every important field validates immediately while typing,
+          which improves usability and prevents many submission errors.
+        </li>
+
+        <li>
+          <strong>Modern UI Design:</strong>
+          I am happy with the cleaner medical-themed design,
+          including the gradient section headers, weather widget,
+          and responsive health tips cards.
+        </li>
+
+      </ul>
+
+    </div>
+
+    <!-- MISSING -->
+
+    <h2>What I Did Not Yet Fully Get Working</h2>
+
+    <div class="missing">
+
+      <ul>
+
+        <li>
+          <strong>Mobile Responsiveness:</strong>
+          I did not fully optimize the layout for smaller mobile devices
+          because the assignment focused more on JavaScript functionality than responsive design.
+        </li>
+
+        <li>
+          <strong>Server-Side Processing:</strong>
+          The project is fully client-side and does not use a backend database
+          or server-side validation for secure patient information storage.
+        </li>
+
+      </ul>
+
+    </div>
+
+    <div style="margin-top:30px; display:flex; gap:12px;">
+
+      <a href="homework4.html" class="buttonLink">
+        ← Registration Form
+      </a>
+
+      <a href="thankyou.html" class="buttonLink">
+        → Thank You Page
+      </a>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

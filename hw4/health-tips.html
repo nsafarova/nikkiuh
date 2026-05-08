@@ -1,0 +1,91 @@
+<!doctype html>
+<!--
+  Name: Nikki Safarova
+  File: health-tips.html
+  Date Created: 2026-05-07
+  Date Updated: 2026-05-08
+  Purpose: HW4 iFrame Content Page
+-->
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Health Tips</title>
+
+    <style>
+      body {
+        background: #f4fbfd;
+        color: #156b8a;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        margin: 0;
+        padding: 16px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        margin-top: 0;
+        text-align: center;
+      }
+
+      .tipsGrid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .tipCard {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 16px;
+      }
+
+      .tipTitle {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 8px;
+      }
+
+      .tipText {
+        color: #3b5560;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Page title shown inside the iframe -->
+    <h2>🏥 Daily Health Tips</h2>
+
+    <!-- Two-by-two grid of health tip cards -->
+    <div class="tipsGrid">
+      <div class="tipCard">
+        <div class="tipTitle">💧 Stay Hydrated</div>
+        <div class="tipText">
+          Drink enough water throughout the day to help your body stay healthy and energized.
+        </div>
+      </div>
+
+      <div class="tipCard">
+        <div class="tipTitle">😴 Get Enough Sleep</div>
+        <div class="tipText">
+          Adults should aim for at least 7 to 8 hours of sleep every night.
+        </div>
+      </div>
+
+      <div class="tipCard">
+        <div class="tipTitle">🏃 Exercise Regularly</div>
+        <div class="tipText">
+          Even a short daily walk can improve heart health and reduce stress.
+        </div>
+      </div>
+
+      <div class="tipCard">
+        <div class="tipTitle">🩺 Schedule Checkups</div>
+        <div class="tipText">
+          Regular medical checkups help detect health issues earlier and improve treatment outcomes.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

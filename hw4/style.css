@@ -1,0 +1,428 @@
+/*
+  Name: Nikki Safarova
+  File: style.css
+  Date Created: 2026-02-21
+  Date Updated: 2026-05-08
+  Purpose: MIS 7375 Homework 4 - MediForm CSS Stylesheet
+*/
+
+/* PAGE LAYOUT */
+
+body {
+  background: #d2eaf6;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  padding-bottom: 120px;
+  padding-top: 110px;
+}
+
+/* FIXED HEADER */
+
+#header {
+  background: rgba(253, 254, 255, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #cfeaf2;
+  box-sizing: border-box;
+  left: 0;
+  padding: 8px 18px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+#header img {
+  width: 190px;
+}
+
+#welcomeMessage {
+  color: #0f6e8c;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-align: right;
+}
+
+#welcomeMessage button {
+  background: #0e7490;
+  border: none;
+  border-radius: 10px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: 6px;
+  padding: 7px 10px;
+}
+
+#welcomeMessage button:hover {
+  background: #0f6e8c;
+}
+
+#today {
+  background: #e6f7fb;
+  border: 1px solid #b9e4ef;
+  border-radius: 12px;
+  color: #0f6e8c;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 12px;
+}
+
+#weatherBox {
+  background: #e6f7fb;
+  border: 1px solid #b9e4ef;
+  border-radius: 12px;
+  color: #0f6e8c;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 8px;
+  padding: 7px 12px;
+}
+
+/* BODY SECTION */
+
+#body {
+  padding: 24px 14px 34px 14px;
+}
+
+h2 {
+  color: #0f6e8c;
+  font-weight: 800;
+  margin: 0 0 18px 0;
+  text-align: center;
+}
+
+/* FORM CONTAINER */
+
+.formContainer {
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+.formTable {
+  background: #ffffff;
+  border: 1px solid #d7e8ef;
+  border-collapse: separate;
+  border-radius: 14px;
+  border-spacing: 0;
+  box-shadow: 0 10px 30px rgba(15, 110, 140, 0.08);
+  font-size: 14px;
+  width: 100%;
+}
+
+.formTable th {
+  background: linear-gradient(90deg, #0f6e8c, #2dd4bf);
+  border-radius: 14px 14px 0 0;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 10px 14px;
+  text-align: left;
+}
+
+/* FORM INPUTS */
+
+input,
+select,
+textarea {
+  background: #f7fbfd;
+  border: 1px solid #cfe3ea;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 13px;
+  margin-top: 4px;
+  padding: 7px 9px;
+  width: 100%;
+}
+
+textarea {
+  height: 80px;
+  resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 6px;
+  margin-top: 0;
+  width: auto;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2dd4bf;
+  box-shadow: 0 0 0 3px rgba(45, 212, 191, 0.12);
+  outline: none;
+}
+
+/* BUTTONS */
+
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+button {
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 700;
+  padding: 10px 14px;
+  width: auto;
+}
+
+input[type="button"] {
+  background: #0e7490;
+  color: #ffffff;
+}
+
+input[type="reset"] {
+  background: #e9eef2;
+  color: #0b2b3a;
+}
+
+input[type="submit"] {
+  background: #16a34a;
+  color: #ffffff;
+}
+
+#validateBtn {
+  background: #b45309;
+  color: #ffffff;
+}
+
+button {
+  background: #2dd4bf;
+  color: #ffffff;
+}
+
+input[type="button"]:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  transition: 0.2s;
+}
+
+/* SLIDER */
+
+input[type="range"] {
+  accent-color: #2dd4bf;
+}
+
+.sliderNote {
+  color: #555;
+  font-size: 12px;
+}
+
+#scoreValue {
+  background: #c9f1ee;
+  border-radius: 10px;
+  color: #0f6e8c;
+  display: inline-block;
+  font-weight: 800;
+  margin-top: 8px;
+  padding: 5px 10px;
+}
+
+/* CHARACTER COUNT */
+
+#charCount {
+  color: #555;
+  font-size: 11px;
+}
+
+/* REVIEW SECTION */
+
+#reviewSection {
+  background: #ffffff;
+  border: 1px solid #d7e8ef;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(15, 110, 140, 0.08);
+  box-sizing: border-box;
+  margin: 24px auto 0 auto;
+  max-width: 900px;
+  padding: 24px;
+  width: 100%;
+}
+
+#reviewSection h3 {
+  color: #0f6e8c;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+#reviewSection h4 {
+  color: #0f6e8c;
+  margin-bottom: 12px;
+  margin-top: 26px;
+  text-transform: uppercase;
+}
+
+.reviewGrid {
+  column-gap: 20px;
+  display: grid;
+  grid-template-columns: 230px 1fr 220px;
+  row-gap: 10px;
+}
+
+.reviewGridSmall {
+  column-gap: 20px;
+  display: grid;
+  grid-template-columns: 230px 1fr;
+  row-gap: 10px;
+}
+
+.reviewLabel {
+  font-weight: 700;
+}
+
+.reviewStatus {
+  font-weight: 700;
+}
+
+.pass {
+  color: green;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.req {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+/* ERROR MESSAGES */
+
+.errorMessage {
+  color: #b91c1c;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 2px;
+  min-height: 12px;
+}
+
+#passwordMessage {
+  font-size: 10px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+/* PASSWORD STRENGTH BAR */
+
+#strengthBar {
+  background: #e2e8f0;
+  border-radius: 4px;
+  display: none;
+  height: 6px;
+  margin-top: 6px;
+  width: 100%;
+}
+
+#strengthFill {
+  border-radius: 4px;
+  height: 6px;
+  transition: width 0.3s, background 0.3s;
+  width: 0%;
+}
+
+#strengthLabel {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* IFRAME SECTION */
+
+.iframeSection {
+  margin: 40px auto 0 auto;
+  max-width: 900px;
+}
+
+.iframeTitle {
+  color: #156b8a;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.healthFrame {
+  background: white;
+  border: 2px solid #c7e4ec;
+  border-radius: 14px;
+  height: 320px;
+  width: 100%;
+}
+
+/* FIXED FOOTER */
+
+#footer {
+  background: rgba(15, 110, 140, 0.97);
+  backdrop-filter: blur(8px);
+  bottom: 0;
+  color: #ffffff;
+  font-size: 11px;
+  padding: 2px 14px;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+}
+
+#footer table {
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+#footer a {
+  color: #c9f1ee;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+#footer button {
+  background: #2dd4bf;
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 8px 12px;
+}
+
+/* TIMEOUT MODAL */
+
+.timeoutModal {
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  left: 0;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2000;
+}
+
+.timeoutBox {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  margin: 180px auto;
+  max-width: 420px;
+  padding: 24px;
+  text-align: center;
+}
+
+.timeoutBox h3 {
+  color: #b45309;
+  margin-top: 0;
+}
+
+.timeoutBox button {
+  background: #0e7490;
+  color: #ffffff;
+}
+
